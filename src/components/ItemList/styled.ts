@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { GridStyled } from "../Grid/styled";
-import { Colors } from "../Global";
+import { Colors, Breakpoints } from "../Global";
 import { Exit } from "../Icon";
 import { Text } from "../Text";
 
@@ -19,6 +19,7 @@ export const ModalWrapper = styled(GridStyled)`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  max-width: 500px;
   background: ${Colors.white};
   border: 1px solid ${Colors.black};
   border-radius: 4px;
@@ -40,4 +41,8 @@ export const FileName = styled(Text)`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 128px;
+
+  @media (min-width: ${Breakpoints.Desktop}) {
+    max-width: 256px;
+  }
 `;

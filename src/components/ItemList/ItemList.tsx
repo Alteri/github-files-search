@@ -66,7 +66,7 @@ const ItemList = ({
         <ModalWrapper gap="8">
           <ModalHeader>
             <Text textType="h1">{ownerName}</Text>
-            <Text>{fileName}</Text>
+            <FileName>{fileName}</FileName>
             <ExitIcon onClick={() => handleClick(0)} />
           </ModalHeader>
           <img src={avatarUrl} alt={`owner ${ownerName} avatar`} width="100%" />
