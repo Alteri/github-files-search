@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { Label } from "./styled";
+import { Label, SelectStyled } from "./styled";
 
 type SelectProps = {
   name: string;
@@ -16,7 +16,7 @@ const Select = ({ name, label, options }: SelectProps) => {
         name={name}
         render={({ field }) => {
           return (
-            <select
+            <SelectStyled
               defaultValue={field.value}
               onChange={(e) => field.onChange(e.target.value)}
             >
@@ -25,7 +25,7 @@ const Select = ({ name, label, options }: SelectProps) => {
                   {label}
                 </option>
               ))}
-            </select>
+            </SelectStyled>
           );
         }}
       />
