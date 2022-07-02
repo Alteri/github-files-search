@@ -17,6 +17,7 @@ import { Select } from "./components/Select";
 import { Grid } from "./components/Grid";
 import { Text } from "./components/Text";
 import { Colors } from "./components/Global";
+import { Button } from "./components/Button";
 
 const App = () => {
   const { getAllFiles } = useGetFiles();
@@ -124,7 +125,7 @@ const App = () => {
                 label="Results per page"
               />
             </Grid>
-            <input type="submit" value="Szukaj" />
+            <Button>Szukaj</Button>
           </Grid>
         </form>
       </FormProvider>

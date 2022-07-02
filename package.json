@@ -1,5 +1,6 @@
 {
   "name": "github-files-search",
+  "homepage": "https://alteri.github.io/github-files-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -51,6 +52,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.1.0",
     "eslint-plugin-react": "^7.30.1",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1"
   }
 }

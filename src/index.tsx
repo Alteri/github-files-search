@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <BrowserRouter>
+    <BrowserRouter basename="/github-files-search/">
       <App />
     </BrowserRouter>
   </React.StrictMode>
