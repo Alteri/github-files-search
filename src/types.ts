@@ -1,4 +1,5 @@
 export type FillesProps = {
+  message: string;
   total_count: number;
   items: {
     name: string;

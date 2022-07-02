@@ -38,6 +38,14 @@ const App = () => {
     setCurrentPage(pageIndex);
     setIsLoading(true);
 
+    setSearchParams({
+      query: query,
+      user: user,
+      language: language,
+      per_page: per_page,
+      page: pageIndex.toString(),
+    });
+
     (async () => {
       const result = await getAllFiles(query, pageIndex, params);
       setAllFilles(result);
@@ -71,7 +79,11 @@ const App = () => {
     setIsLoading(true);
 
     (async () => {
-      const result = await getAllFiles(data[FORM_FIELDS.SEARCH_INPUT], 1, data);
+      const result = await getAllFiles(
+        data[FORM_FIELDS.SEARCH_INPUT],
+        page ? page : 1,
+        data
+      );
       setAllFilles(result);
       setIsLoading(false);
     })();
@@ -90,7 +102,7 @@ const App = () => {
         },
         index
       ) => ({
-        id: index + 1 + (+currentPage * +perPage - +perPage),
+        id: index + 1 + ((page ? +page : +currentPage) * +perPage - +perPage),
         fileName: name,
         description,
         url: html_url,
@@ -131,22 +143,30 @@ const App = () => {
       </FormProvider>
       {!isLoading ? (
         <>
-          {fillerFiltered ? (
+          {allFilles?.errors?.length || allFilles?.message ? (
             <>
-              <List options={fillerFiltered} />
-              <Pagination
-                totalResults={allFilles?.total_count || 0}
-                handleCurrentPage={handleCurrentPage}
-                currentPage={currentPage}
-                perPage={+perPageValue}
-              />
-            </>
-          ) : (
-            <>
-              {allFilles?.errors.length && (
+              {allFilles?.errors?.length ? (
                 <Text textAlign="center" color={Colors.red}>
                   {allFilles?.errors[0].message}
                 </Text>
+              ) : (
+                <Text textAlign="center" color={Colors.red}>
+                  {allFilles?.message}
+                </Text>
+              )}
+            </>
+          ) : (
+            <>
+              {fillerFiltered && (
+                <>
+                  <List options={fillerFiltered} />
+                  <Pagination
+                    totalResults={allFilles?.total_count || 0}
+                    handleCurrentPage={handleCurrentPage}
+                    currentPage={page ? +page : currentPage}
+                    perPage={+perPageValue}
+                  />
+                </>
               )}
             </>
           )}

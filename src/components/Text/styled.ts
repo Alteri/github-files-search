@@ -25,6 +25,7 @@ export const TextStyled = styled.p<{
   textAlign?: string;
   clamp?: number;
 }>`
+  line-height: 1.2;
   ${({ textType }) => textType && getTextTypeStyle(textType)}
   ${({ color }) => color && `color: ${color};`}
   ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
