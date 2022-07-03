@@ -62,7 +62,11 @@ const App = () => {
     },
   });
 
-  const { handleSubmit, watch } = form;
+  const {
+    handleSubmit,
+    watch,
+    formState: { submitCount },
+  } = form;
 
   const perPageValue = watch(FORM_FIELDS.PER_PAGE_SELECT);
 
@@ -110,6 +114,8 @@ const App = () => {
     return { fillerFiltered };
   }, [allFilles]);
 
+  console.log(allFilles);
+
   return (
     <Page>
       <FormProvider {...form}>
@@ -151,8 +157,9 @@ const App = () => {
                 perPage={+perPageValue}
               />
             </>
-          ) : null}
-          {allFilles?.message && <Validation data={allFilles} />}
+          ) : (
+            <>{submitCount > 0 && <Validation data={allFilles} />}</>
+          )}
         </>
       ) : (
         <Text textAlign="center">Loading...</Text>
