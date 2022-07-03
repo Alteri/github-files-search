@@ -114,8 +114,6 @@ const App = () => {
     return { fillerFiltered };
   }, [allFilles]);
 
-  console.log(allFilles);
-
   return (
     <Page>
       <FormProvider {...form}>
