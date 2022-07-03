@@ -16,8 +16,8 @@ import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import { Grid } from "./components/Grid";
 import { Text } from "./components/Text";
-import { Colors } from "./components/Global";
 import { Button } from "./components/Button";
+import { Validation } from "./components/Validation";
 
 const App = () => {
   const { getAllFiles } = useGetFiles();
@@ -79,11 +79,7 @@ const App = () => {
     setIsLoading(true);
 
     (async () => {
-      const result = await getAllFiles(
-        data[FORM_FIELDS.SEARCH_INPUT],
-        page ? page : 1,
-        data
-      );
+      const result = await getAllFiles(data[FORM_FIELDS.SEARCH_INPUT], 1, data);
       setAllFilles(result);
       setIsLoading(false);
     })();
@@ -145,33 +141,18 @@ const App = () => {
       </FormProvider>
       {!isLoading ? (
         <>
-          {allFilles?.errors?.length || allFilles?.message ? (
+          {fillerFiltered?.length ? (
             <>
-              {allFilles?.errors?.length ? (
-                <Text textAlign="center" color={Colors.red}>
-                  {allFilles?.errors[0].message}
-                </Text>
-              ) : (
-                <Text textAlign="center" color={Colors.red}>
-                  {allFilles?.message}
-                </Text>
-              )}
+              <List options={fillerFiltered} />
+              <Pagination
+                totalResults={allFilles?.total_count || 0}
+                handleCurrentPage={handleCurrentPage}
+                currentPage={page ? +page : currentPage}
+                perPage={+perPageValue}
+              />
             </>
-          ) : (
-            <>
-              {fillerFiltered && (
-                <>
-                  <List options={fillerFiltered} />
-                  <Pagination
-                    totalResults={allFilles?.total_count || 0}
-                    handleCurrentPage={handleCurrentPage}
-                    currentPage={page ? +page : currentPage}
-                    perPage={+perPageValue}
-                  />
-                </>
-              )}
-            </>
-          )}
+          ) : null}
+          {allFilles?.message && <Validation data={allFilles} />}
         </>
       ) : (
         <Text textAlign="center">Loading...</Text>

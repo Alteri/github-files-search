@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { PaginationList, PaginationItem, PaginationWrapper } from "./styled";
 import { Text } from "../Text";
-import { Colors } from "../Global";
 
 type PaginationProps = {
   handleCurrentPage: (id: number) => void;
@@ -34,26 +33,18 @@ const Pagination = ({
 
   return (
     <PaginationWrapper>
-      {pageNumbersFilteres.length ? (
-        <>
-          <PaginationList>
-            {pageNumbersFilteres.map((item: number) => (
-              <PaginationItem
-                key={item}
-                currentPage={item == currentPage}
-                onClick={() => handleCurrentPage(item)}
-              >
-                {item}
-              </PaginationItem>
-            ))}
-          </PaginationList>
-          <Text> / {pageNumbers.length}</Text>
-        </>
-      ) : (
-        <Text color={Colors.red} textAlign="center">
-          No results
-        </Text>
-      )}
+      <PaginationList>
+        {pageNumbersFilteres.map((item: number) => (
+          <PaginationItem
+            key={item}
+            currentPage={item == currentPage}
+            onClick={() => handleCurrentPage(item)}
+          >
+            {item}
+          </PaginationItem>
+        ))}
+      </PaginationList>
+      <Text> / {pageNumbers.length}</Text>
     </PaginationWrapper>
   );
 };
