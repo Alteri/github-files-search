@@ -5,7 +5,8 @@ export type FillesProps = {
     name: string;
     html_url: string;
     repository: {
-      owner: { login: string; avatar_url: string; description: string };
+      description: string;
+      owner: { login: string; avatar_url: string };
     };
   }[];
   errors: {

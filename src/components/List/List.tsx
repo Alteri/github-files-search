@@ -8,7 +8,8 @@ type ListProps = {
     fileName: string;
     description: string;
     url: string;
-    owner: { ownerName: string; avatar_url: string };
+    ownerName: string;
+    avatar_url: string;
   }[];
 };
 
@@ -18,10 +19,7 @@ const List = ({ options }: ListProps) => {
   return (
     <ListStyled>
       {options.map(
-        (
-          { id, fileName, url, description, owner: { ownerName, avatar_url } },
-          index
-        ) => (
+        ({ id, fileName, url, description, ownerName, avatar_url }, index) => (
           <ItemList
             key={index}
             id={id}

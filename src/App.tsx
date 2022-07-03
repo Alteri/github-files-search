@@ -97,7 +97,8 @@ const App = () => {
           name,
           html_url,
           repository: {
-            owner: { login, avatar_url, description },
+            description,
+            owner: { login, avatar_url },
           },
         },
         index
@@ -106,7 +107,8 @@ const App = () => {
         fileName: name,
         description,
         url: html_url,
-        owner: { ownerName: login, avatar_url },
+        ownerName: login,
+        avatar_url,
       })
     );
     return { fillerFiltered };

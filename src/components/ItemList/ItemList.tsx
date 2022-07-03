@@ -38,7 +38,7 @@ const ItemList = ({
       gap="16"
     >
       <Text>{id}.</Text>
-      <div>
+      <Grid gap="8">
         <Grid templateColumns="auto max-content" alignContent="center" gap="8">
           <Grid
             templateColumns="repeat(2, max-content)"
@@ -61,7 +61,7 @@ const ItemList = ({
           </Grid>
         </Grid>
         {description && <Text>{description}</Text>}
-      </div>
+      </Grid>
       {isOpen && (
         <ModalWrapper gap="8">
           <ModalHeader>
